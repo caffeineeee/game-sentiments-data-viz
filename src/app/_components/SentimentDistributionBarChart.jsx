@@ -1,3 +1,4 @@
+import React from 'react';
 import { Bar } from 'react-chartjs-2';
 import { Chart, BarElement, LinearScale, CategoryScale, Title, Tooltip, Legend } from 'chart.js';
 
@@ -5,48 +6,38 @@ Chart.register(BarElement, LinearScale, CategoryScale, Title, Tooltip, Legend);
 
 const SentimentDistributionBarChart = ({ data }) => {
 
-  const getSentimentCounts = () => {
+  // Group data by sentiment
+  const groupedData = data.reduce((groups, item) => {
+    const { sentiment } = item;
+    if (!groups[sentiment]) {
+      groups[sentiment] = 0;
+    }
+    groups[sentiment]++;
+    return groups;
+  }, {});
 
-    const sentimentCounts = {};
-
-    data.forEach(item => {
-      const sentiment = item.sentiment;
-      if (sentimentCounts[sentiment]) {
-        sentimentCounts[sentiment]++;
-      } else {
-        sentimentCounts[sentiment] = 1;
-      }
-    });
-
-    return Object.values(sentimentCounts);
-  };
-
-  const labels = ['Positive', 'Neutral', 'Negative', 'Irrelevant'];
-
-  const getSentimentLabels = () => {
-    const sentimentLabels = {};
-
-    data.forEach(item => {
-      const sentiment = item.sentiment;
-      sentimentLabels[sentiment] = sentiment;
-    });
-
-    return Object.values(sentimentLabels);
-  };
+  const labels = Object.keys(groupedData);
+  const sentimentCounts = Object.values(groupedData);
 
   const chartData = {
     labels: labels,
-    // labels: getSentimentLabels(),
     datasets: [
       {
-        label: 'Game Sentiment Analysis',
-        data: getSentimentCounts(),
+        label: 'Sentiment Distribution',
+        data: sentimentCounts,
         backgroundColor: [
           'rgba(75, 192, 192, 0.6)',
           'rgba(54, 162, 235, 0.6)',
           'rgba(255, 99, 132, 0.6)',
           'rgba(255, 206, 86, 0.6)',
         ],
+        borderColor: [
+          'rgba(75, 192, 192, 1)',
+          'rgba(54, 162, 235, 1)',
+          'rgba(255, 99, 132, 1)',
+          'rgba(255, 206, 86, 1)',
+        ],
+        borderWidth: 1,
       },
     ],
   };
@@ -59,12 +50,6 @@ const SentimentDistributionBarChart = ({ data }) => {
           display: true,
           text: 'Count of sentiment',
         },
-      },
-      x: {
-        title: {
-          display: true,
-          text: 'sentiment',
-        }
       },
     },
   };
