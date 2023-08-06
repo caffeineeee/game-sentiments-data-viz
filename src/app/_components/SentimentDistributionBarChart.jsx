@@ -1,4 +1,3 @@
-import React from 'react';
 import { Bar } from 'react-chartjs-2';
 import { Chart, BarElement, LinearScale, CategoryScale, Title, Tooltip, Legend } from 'chart.js';
 
@@ -17,7 +16,7 @@ const SentimentDistributionBarChart = ({ data }) => {
   }, {});
 
   const labels = Object.keys(groupedData);
-  const sentimentCounts = Object.values(groupedData);
+  const sentimentCounts = labels.map(sentiment => groupedData[sentiment]);
 
   const chartData = {
     labels: labels,
@@ -43,6 +42,11 @@ const SentimentDistributionBarChart = ({ data }) => {
   };
 
   const options = {
+    plugins: {
+      legend: {
+        display: false,
+      },
+    },
     scales: {
       y: {
         beginAtZero: true,
