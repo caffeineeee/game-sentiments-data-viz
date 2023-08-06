@@ -1,27 +1,9 @@
-'use client';
-
-import { useEffect, useState } from 'react';
 import { Bar } from 'react-chartjs-2';
 import { Chart, LinearScale, CategoryScale, BarElement, Title, Tooltip, Legend } from 'chart.js';
 
 Chart.register(LinearScale, CategoryScale, BarElement, Title, Tooltip, Legend);
 
-const SentimentDistributionBarChart = () => {
-  const [data, setData] = useState([]);
-
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        const response = await fetch('https://caxxels.github.io/test-json/test.json');
-        const jsonData = await response.json();
-        setData(jsonData);
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    }
-
-    fetchData();
-  }, []);
+const SentimentDistributionBarChart = ({ data }) => {
 
   const getSentimentCounts = () => {
     const sentimentCounts = {

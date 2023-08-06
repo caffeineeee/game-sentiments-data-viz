@@ -1,7 +1,27 @@
+'use client';
+
+import { useEffect, useState } from 'react';
 import SentimentDistributionBarChart from "./_components/SentimentDistributionBarChart";
 import SourceDistributionPieChart from "./_components/SourceDistributionPieChart";
 
-export default function Home() {
+const Home = () => {
+
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const response = await fetch('https://caxxels.github.io/test-json/test.json');
+        const jsonData = await response.json();
+        setData(jsonData);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    }
+
+    fetchData();
+  }, []);
+
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-12">
       <div className="items-center">
@@ -12,10 +32,12 @@ export default function Home() {
         <div className="py-4">
         </div>
           <div>
-          <SentimentDistributionBarChart />
-          <SourceDistributionPieChart />
+          <SentimentDistributionBarChart data={ data } />
+          <SourceDistributionPieChart data={ data } />
         </div>
       </div>
     </main>
   )
 }
+
+export default Home;

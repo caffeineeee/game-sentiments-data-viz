@@ -1,27 +1,9 @@
-'use client';
-
-import React, { useEffect, useState } from 'react';
 import { Pie } from 'react-chartjs-2';
 import { Chart, Title, Tooltip, Legend, ArcElement } from 'chart.js';
 
 Chart.register(Title, Tooltip, Legend, ArcElement);
 
-const SourceDistributionPieChart = () => {
-  const [data, setData] = useState([]);
-
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        const response = await fetch('https://caxxels.github.io/test-json/test.json');
-        const jsonData = await response.json();
-        setData(jsonData);
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    }
-
-    fetchData();
-  }, []);
+const SourceDistributionPieChart = ({ data }) => {
 
   const getSourceCounts = () => {
     const sourceCounts = {};
