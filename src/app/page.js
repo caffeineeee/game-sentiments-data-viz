@@ -12,7 +12,7 @@ const Home = () => {
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await fetch('https://caxxels.github.io/test-json/test.json');
+        const response = await fetch('https://ivanbudianto.github.io/test-json/test.json');
         const jsonData = await response.json();
         setData(jsonData);
       } catch (error) {
