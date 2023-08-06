@@ -2,16 +2,16 @@ import SentimentDistributionBarChart from "./_components/SentimentDistributionBa
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="flex flex-col items-center text-xl">
-        <div>
-          <h1>Game Sentiments Data Viz</h1>
+    <main className="flex min-h-screen flex-col items-center justify-between p-12">
+      <div className="items-center">
+        <div className="text-center bg-cyan-950">
+          <p className="text-lg">Game Sentiments Data Viz</p>
+          <p className="text-sm text-gray-300">This project acts as part of Recruitment process for the Front-End Engineer position at CDP</p>
         </div>
-        <p className="pb-4 text-sm text-gray-300">This project acts as part of Recruitment process for the Front-End Engineer position at CDP</p>
-        <div>
+        <div className="py-4">
+        </div>
           <div>
-            <SentimentDistributionBarChart />
-          </div>
+          <SentimentDistributionBarChart />
         </div>
       </div>
     </main>
