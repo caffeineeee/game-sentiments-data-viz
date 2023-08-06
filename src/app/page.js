@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import SentimentDistributionBarChart from "./_components/SentimentDistributionBarChart";
 import SourceDistributionPieChart from "./_components/SourceDistributionPieChart";
+import SentimentOverTimeLineChart from './_components/SentimentOverTimeLineChart';
 
 const Home = () => {
 
@@ -34,6 +35,7 @@ const Home = () => {
           <div>
           <SentimentDistributionBarChart data={ data } />
           <SourceDistributionPieChart data={ data } />
+          <SentimentOverTimeLineChart data={ data } />
         </div>
       </div>
     </main>

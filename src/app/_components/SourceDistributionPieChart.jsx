@@ -1,7 +1,7 @@
 import { Pie } from 'react-chartjs-2';
-import { Chart, Title, Tooltip, Legend, ArcElement } from 'chart.js';
+import { Chart, ArcElement, Title, Tooltip, Legend } from 'chart.js';
 
-Chart.register(Title, Tooltip, Legend, ArcElement);
+Chart.register(ArcElement, Title, Tooltip, Legend);
 
 const SourceDistributionPieChart = ({ data }) => {
 
