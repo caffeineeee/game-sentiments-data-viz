@@ -1,12 +1,16 @@
 import { Line } from 'react-chartjs-2';
 import { Chart, LineElement, PointElement, LinearScale, CategoryScale, Title, Tooltip, Legend } from 'chart.js';
+import { DateTime } from 'luxon';
 
 Chart.register(LineElement, PointElement, LinearScale, CategoryScale, Title, Tooltip, Legend);
 
 const SentimentOverTimeLineChart = ({ data }) => {
 
+  // Sort the data by datetime (from oldest to newest)
+  const sortedData = data.sort((a, b) => a.timestamp - b.timestamp);
+
   // Group data by sentiment and date
-  const groupedData = data.reduce((groups, item) => {
+  const groupedData = sortedData.reduce((groups, item) => {
     const date = item.datetime.split(' ')[0]; // Extract date from datetime
     if (!groups[date]) {
       groups[date] = { Positive: 0, Neutral: 0, Negative: 0 };
@@ -16,6 +20,7 @@ const SentimentOverTimeLineChart = ({ data }) => {
   }, {});
 
   const labels = Object.keys(groupedData);
+
   const sentimentCounts = {
     Positive: [],
     Neutral: [],
@@ -30,8 +35,14 @@ const SentimentOverTimeLineChart = ({ data }) => {
     sentimentCounts.Negative.push(counts.Negative);
   });
 
+  const formattedLabels = labels.map(date => {
+    // Format the date using Luxon's DateTime
+    const formattedDate = DateTime.fromISO(date).toFormat('LLL d, yyyy');
+    return formattedDate;
+  });
+
   const chartData = {
-    labels: labels,
+    labels: formattedLabels,
     datasets: [
       {
         label: 'Positive',
