@@ -1,4 +1,5 @@
 import SentimentDistributionBarChart from "./_components/SentimentDistributionBarChart";
+import SourceDistributionPieChart from "./_components/SourceDistributionPieChart";
 
 export default function Home() {
   return (
@@ -12,6 +13,7 @@ export default function Home() {
         </div>
           <div>
           <SentimentDistributionBarChart />
+          <SourceDistributionPieChart />
         </div>
       </div>
     </main>

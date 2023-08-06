@@ -75,8 +75,8 @@ const SentimentDistributionBarChart = () => {
 
   return (
     <>
-      <p className='text-sm text-center'>Sentiment Distribution Bar Chart</p>
-      <Bar className='h-64' data={ chartData } options={ options } />
+      <p className='text-sm text-center'>&#39;Sentiment&#39; Distribution Bar Chart</p>
+      <Bar data={ chartData } options={ options } />
     </>
   );
 };
