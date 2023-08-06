@@ -84,10 +84,10 @@ const SentimentOverTimeLineChart = ({ data }) => {
   };
 
   return (
-    <>
+    <div className='p-4'>
       <p className='text-sm text-center'>&#39;Sentiment&#39; Over Time Line Chart</p>
       <Line data={ chartData } options={ options } />
-    </>
+    </div>
   );
 };
 

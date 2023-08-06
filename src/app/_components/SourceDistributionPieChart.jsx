@@ -52,10 +52,10 @@ const SourceDistributionPieChart = ({ data }) => {
   };
 
   return (
-    <>
+    <div className='p-4'>
       <p className='text-sm text-center'>&#39;Source&#39; Distribution Pie Chart</p>
       <Pie data={ chartData } options={ options } />
-    </>
+    </div>
   );
 };
 
