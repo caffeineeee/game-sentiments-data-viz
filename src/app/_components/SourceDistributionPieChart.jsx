@@ -48,9 +48,7 @@ const SourceDistributionPieChart = ({ data }) => {
   };
 
   const options = {
-    plugins: {
-
-    },
+    // Add options here
   };
 
   return (

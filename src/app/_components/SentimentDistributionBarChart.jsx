@@ -6,24 +6,37 @@ Chart.register(BarElement, LinearScale, CategoryScale, Title, Tooltip, Legend);
 const SentimentDistributionBarChart = ({ data }) => {
 
   const getSentimentCounts = () => {
-    const sentimentCounts = {
-      Positive: 0,
-      Neutral: 0,
-      Negative: 0,
-    };
+
+    const sentimentCounts = {};
 
     data.forEach(item => {
       const sentiment = item.sentiment;
-      sentimentCounts[sentiment]++;
+      if (sentimentCounts[sentiment]) {
+        sentimentCounts[sentiment]++;
+      } else {
+        sentimentCounts[sentiment] = 1;
+      }
     });
 
     return Object.values(sentimentCounts);
   };
 
-  const labels = ['Positive', 'Neutral', 'Negative'];
+  const labels = ['Positive', 'Neutral', 'Negative', 'Irrelevant'];
+
+  const getSentimentLabels = () => {
+    const sentimentLabels = {};
+
+    data.forEach(item => {
+      const sentiment = item.sentiment;
+      sentimentLabels[sentiment] = sentiment;
+    });
+
+    return Object.values(sentimentLabels);
+  };
 
   const chartData = {
     labels: labels,
+    // labels: getSentimentLabels(),
     datasets: [
       {
         label: 'Game Sentiment Analysis',
@@ -32,6 +45,7 @@ const SentimentDistributionBarChart = ({ data }) => {
           'rgba(75, 192, 192, 0.6)',
           'rgba(54, 162, 235, 0.6)',
           'rgba(255, 99, 132, 0.6)',
+          'rgba(255, 206, 86, 0.6)',
         ],
       },
     ],

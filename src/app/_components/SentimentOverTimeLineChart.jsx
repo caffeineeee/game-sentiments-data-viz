@@ -13,7 +13,7 @@ const SentimentOverTimeLineChart = ({ data }) => {
   const groupedData = sortedData.reduce((groups, item) => {
     const date = item.datetime.split(' ')[0]; // Extract date from datetime
     if (!groups[date]) {
-      groups[date] = { Positive: 0, Neutral: 0, Negative: 0 };
+      groups[date] = { Positive: 0, Neutral: 0, Negative: 0, Irrelevant: 0 };
     }
     groups[date][item.sentiment]++;
     return groups;
@@ -25,6 +25,7 @@ const SentimentOverTimeLineChart = ({ data }) => {
     Positive: [],
     Neutral: [],
     Negative: [],
+    Irrelevant: [],
   };
 
   // Populate sentiment count arrays for each date
@@ -33,6 +34,7 @@ const SentimentOverTimeLineChart = ({ data }) => {
     sentimentCounts.Positive.push(counts.Positive);
     sentimentCounts.Neutral.push(counts.Neutral);
     sentimentCounts.Negative.push(counts.Negative);
+    sentimentCounts.Irrelevant.push(counts.Irrelevant);
   });
 
   const formattedLabels = labels.map(date => {
@@ -61,6 +63,12 @@ const SentimentOverTimeLineChart = ({ data }) => {
         data: sentimentCounts.Negative,
         borderColor: 'rgba(255, 99, 132, 0.6)',
         backgroundColor: 'rgba(255, 99, 132, 0.2)',
+      },
+      {
+        label: 'Irrelevant',
+        data: sentimentCounts.Irrelevant,
+        borderColor: 'rgba(255, 206, 86, 0.6)',
+        backgroundColor: 'rgba(255, 206, 86, 0.2)',
       },
     ],
   };
