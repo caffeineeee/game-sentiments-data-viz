@@ -28,18 +28,17 @@ const Home = () => {
       <div className="items-center">
         <div className="text-center bg-cyan-950">
           <p className="text-lg">Game Sentiments Data Viz</p>
-          <p className="text-sm text-gray-300">This project acts as part of Recruitment process for the Front-End Engineer position at CDP</p>
         </div>
         <div className="py-4">
         </div>
-          <div>
-          <SentimentDistributionBarChart data={ data } />
-          <SourceDistributionPieChart data={ data } />
-          <SentimentOverTimeLineChart data={ data } />
+        <div>
+          <SentimentDistributionBarChart data={data} />
+          <SourceDistributionPieChart data={data} />
+          <SentimentOverTimeLineChart data={data} />
         </div>
       </div>
     </main>
-  )
-}
+  );
+};
 
 export default Home;

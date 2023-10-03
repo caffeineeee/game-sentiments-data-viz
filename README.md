@@ -1,8 +1,6 @@
 # game-sentiments-data-viz
 https://game-sentiments-data-viz.vercel.app
 
->This project acts as part of Recruitment process for the Front-End Engineer position at CDP.
-
 ## Getting Started
 
 Clone this repo:
